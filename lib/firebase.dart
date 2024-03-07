@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media/pages/home_page.dart';
 import 'package:social_media/pages/login_page.dart';
 import 'package:social_media/widgets/alert_box.dart';
 
@@ -32,6 +33,22 @@ class FirebaseFunctions {
         );
       } on FirebaseAuthException catch (e) {
         AlertBox.CustomAlertBox(context, e.code.toString());
+      }
+    }
+  }
+
+  static signIn(String email, String password, BuildContext context) async {
+    UserCredential? userCredential;
+    if(email.isEmpty || password.isEmpty){
+      AlertBox.CustomAlertBox(context, 'Enter required fields');
+    }
+    else{
+      try{
+        userCredential =await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage())));
+      }
+
+      on FirebaseAuthException catch(e){
+        AlertBox.CustomAlertBox(context, e.toString());
       }
     }
   }
