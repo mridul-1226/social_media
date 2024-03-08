@@ -10,7 +10,7 @@ class FirebaseFunctions {
 
   static signUp(String email, String password, String name, String contact, String batch, BuildContext context) async {
     if (email == "" || password == "" || name == "" || contact == "" || batch == "") {
-      AlertBox.CustomAlertBox(context, 'Enter required fields');
+      AlertBox.CustomAlertBox(context, 'Enter required fields', 'Please enter all the required details');
     }
     else {
       try {
@@ -32,7 +32,7 @@ class FirebaseFunctions {
           ),
         );
       } on FirebaseAuthException catch (e) {
-        AlertBox.CustomAlertBox(context, e.code.toString());
+        AlertBox.CustomAlertBox(context, 'Error while Signing Up', e.message.toString());
       }
     }
   }
@@ -40,7 +40,7 @@ class FirebaseFunctions {
   static signIn(String email, String password, BuildContext context) async {
     UserCredential? userCredential;
     if(email.isEmpty || password.isEmpty){
-      AlertBox.CustomAlertBox(context, 'Enter required fields');
+      AlertBox.CustomAlertBox(context, 'Enter required fields', 'Please enter all the required details');
     }
     else{
       try{
@@ -48,7 +48,7 @@ class FirebaseFunctions {
       }
 
       on FirebaseAuthException catch(e){
-        AlertBox.CustomAlertBox(context, e.toString());
+        AlertBox.CustomAlertBox(context, 'Error while Signing In', e.message.toString());
       }
     }
   }
