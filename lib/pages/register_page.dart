@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_media/firebase.dart';
+import 'package:social_media/firebase/firebase_auth.dart';
 import 'package:social_media/pages/login_page.dart';
 import 'package:social_media/widgets/text_form_fields.dart';
 
@@ -151,7 +151,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) {
                             return LoginPage();
                           },

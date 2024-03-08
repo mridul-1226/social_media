@@ -32,7 +32,7 @@ class FirebaseFunctions {
           ),
         );
       } on FirebaseAuthException catch (e) {
-        AlertBox.CustomAlertBox(context, 'Error while Signing Up', e.message.toString());
+        AlertBox.CustomAlertBox(context, 'Signup Failed', e.message.toString());
       }
     }
   }
@@ -48,9 +48,12 @@ class FirebaseFunctions {
       }
 
       on FirebaseAuthException catch(e){
-        AlertBox.CustomAlertBox(context, 'Error while Signing In', e.message.toString());
+        AlertBox.CustomAlertBox(context, 'Login Failed', e.message.toString());
       }
     }
   }
+
+
+
 
 }
